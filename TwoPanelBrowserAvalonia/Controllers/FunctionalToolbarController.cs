@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Avalonia.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +10,11 @@ namespace TwoPanelBrowserAvalonia.Controllers
     public class FunctionalToolbarController
     {
         private AppController _appController;
-        public FunctionalToolbarController(AppController appController)
+        private Window _mainWindow;
+        public FunctionalToolbarController(AppController appController, Window mainWindow)
         {
             _appController = appController;
+            _mainWindow = mainWindow;
         }
 
         public void OnRename()
@@ -20,7 +23,8 @@ namespace TwoPanelBrowserAvalonia.Controllers
             if (browser == null || browser.SelectedItem == null)
                 return;
 
-            
+            var dialog = new RenameWindow();
+            dialog.ShowDialog(_mainWindow);
         }
 
     }

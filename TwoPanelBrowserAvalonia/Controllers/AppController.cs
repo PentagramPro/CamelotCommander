@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Avalonia.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,9 +24,9 @@ namespace TwoPanelBrowserAvalonia.Controllers
             _fileBrowsers.Add(fileBrowser);
             return fileBrowser;
         }
-        public FunctionalToolbarController CreateFunctionalToolbar()
+        public FunctionalToolbarController CreateFunctionalToolbar(Window mainWindow)
         {
-            _functionalToolbar = new FunctionalToolbarController(this);
+            _functionalToolbar = new FunctionalToolbarController(this, mainWindow);
             return _functionalToolbar;
         }
 

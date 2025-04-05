@@ -19,7 +19,7 @@ public partial class MainWindow : Window
         AppController? appController = serviceProvider.GetService<AppController>();
         PanelLeft.DataContext = appController?.CreateFileBrowser();
         PanelRight.DataContext = appController?.CreateFileBrowser();
-        FunctionalToolbar.DataContext = appController?.CreateFunctionalToolbar();
+        FunctionalToolbar.DataContext = appController?.CreateFunctionalToolbar(this);
 
     }
 

@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using Tmds.DBus.Protocol;
 using TwoPanelBrowserAvalonia.Controllers;
+using TwoPanelBrowserAvalonia.Utils;
 
 namespace TwoPanelBrowserAvalonia.Components;
 
@@ -18,6 +19,8 @@ public partial class FunctionalToolbar : UserControl
 
     public void OnRename(object sender, RoutedEventArgs e)
     {
+        ContextUtils.FromContext<FunctionalToolbarController>(DataContext).OnRename();
+        
         // Method implementation here
     }
 
