@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TwoPanelBrowserAvalonia.Utils;
 
-namespace TwoPanelBrowserAvalonia.Controllers.FileSystem
+namespace TwoPanelBrowserAvalonia.FileSystem
 {
     public class FileSystemItem_File : IFileSystemItem
     {

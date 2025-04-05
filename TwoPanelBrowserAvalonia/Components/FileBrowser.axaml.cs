@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
 using TwoPanelBrowserAvalonia.Controllers;
-using TwoPanelBrowserAvalonia.Controllers.FileSystem;
+using TwoPanelBrowserAvalonia.FileSystem;
 using TwoPanelBrowserAvalonia.Utils;
 
 namespace TwoPanelBrowserAvalonia.Components;

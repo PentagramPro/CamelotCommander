@@ -16,7 +16,11 @@ namespace TwoPanelBrowserAvalonia.Controllers
 
         public void OnRename()
         {
-            _appController?.ActiveFileBrowser?.RenameSelectedItem();
+            var browser = _appController?.ActiveFileBrowser;
+            if (browser == null || browser.SelectedItem == null)
+                return;
+
+            
         }
 
     }

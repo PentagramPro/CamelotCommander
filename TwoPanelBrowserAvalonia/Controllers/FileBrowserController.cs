@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using TwoPanelBrowserAvalonia.Controllers.FileSystem;
+using TwoPanelBrowserAvalonia.FileSystem;
 using TwoPanelBrowserAvalonia.Utils;
 
 namespace TwoPanelBrowserAvalonia.Controllers
@@ -79,11 +79,7 @@ namespace TwoPanelBrowserAvalonia.Controllers
         }
 
         
-        
-        public void RenameSelectedItem()
-        {
 
-        }
 
        
 
