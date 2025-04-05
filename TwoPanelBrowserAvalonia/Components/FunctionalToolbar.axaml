@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:local="clr-namespace:TwoPanelBrowserAvalonia.Controllers"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="TwoPanelBrowserAvalonia.Components.FunctionalToolbar"
+			  x:DataType="local:FunctionalToolbarController">
+	<StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+		<Button Content="F2 - Rename" Width="100" Click="OnRename"/>
+		<Button Content="F3 - View" Width="100" Click="OnView"/>
+		<Button Content="F4 - Edit" Width="100" Click="OnEdit"/>
+		<Button Content="F5 - Copy" Width="100" Click="OnCopy"/>
+		<Button Content="F6 - Move" Width="100" Click="OnMove"/>
+		<Button Content="F7 - New Dir" Width="100" Click="OnNewDir"/>
+		<Button Content="F8 - Delete" Width="100" Click="OnDelete"/>
+	</StackPanel>
+</UserControl>

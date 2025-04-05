@@ -8,14 +8,11 @@
         Title="TwoPanelBrowserAvalonia">
 	
 	<Grid RowDefinitions="*,80" ColumnDefinitions="*,5,*">
-		<cc:FileBrowser Grid.Row="0" Grid.Column="0"/>
+		<cc:FileBrowser Grid.Row="0" Grid.Column="0" Name="PanelLeft"/>
 		<GridSplitter Grid.Column="1" Background="Gray" ResizeDirection="Columns"/>
-		<cc:FileBrowser Grid.Row="0" Grid.Column="2"/>
+		<cc:FileBrowser Grid.Row="0" Grid.Column="2" Name="PanelRight"/>
 
-		<StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
-			<Button Content="Кнопка 1" Width="100"/>
-			<Button Content="Кнопка 2" Width="100"/>
-			<Button Content="Кнопка 3" Width="100"/>
-		</StackPanel>
+		<cc:FunctionalToolbar Grid.Row="1" Grid.ColumnSpan="3" />
+					
 	</Grid>
 </Window>

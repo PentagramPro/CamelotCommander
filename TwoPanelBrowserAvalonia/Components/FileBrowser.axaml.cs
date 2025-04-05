@@ -24,12 +24,14 @@ public partial class FileBrowser : UserControl
         // Загрузка файлов текущей директории
         _controller.LoadFiles(Directory.GetCurrentDirectory());
         DataContext = _controller;
-
-        
-        
+  
         FilesDataGrid.KeyDown += FilesDataGrid_KeyDown;
     }
 
+    public void Init(IServiceProvider serviceProvider)
+    {
+        // Initialize the controller with the service provider if needed
+    }
 
 
     private void FilesDataGrid_KeyDown(object? sender, KeyEventArgs e)
