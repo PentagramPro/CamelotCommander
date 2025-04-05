@@ -2,48 +2,47 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
+using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
 using TwoPanelBrowserAvalonia.Controllers;
+using TwoPanelBrowserAvalonia.Controllers.FileSystem;
+using TwoPanelBrowserAvalonia.Utils;
 
 namespace TwoPanelBrowserAvalonia.Components;
 
 public partial class FileBrowser : UserControl
 {
 
-    private readonly FileBrowserController _controller;
+    private FileBrowserController? _controller;
  
     public FileBrowser()
     {
         InitializeComponent();
-        _controller = new FileBrowserController();
-
-        // Загрузка файлов текущей директории
-        _controller.LoadFiles(Directory.GetCurrentDirectory());
-        DataContext = _controller;
-  
-        FilesDataGrid.KeyDown += FilesDataGrid_KeyDown;
+       
+        GotFocus += OnGotFocus;
+        DataContextChanged += OnDataContextChanged;
+        FilesDataGrid.SelectionChanged += OnSelectionChanged;
     }
 
-    public void Init(IServiceProvider serviceProvider)
+    private void OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        // Initialize the controller with the service provider if needed
+        if(_controller == null)
+            return;
+        _controller.SelectedItem = (IFileSystemItem)FilesDataGrid.SelectedItem;
     }
 
-
-    private void FilesDataGrid_KeyDown(object? sender, KeyEventArgs e)
+    private void OnDataContextChanged(object? sender, EventArgs e)
     {
-        switch(e.Key)
-        {
-            case Key.Enter:
-                var item = FilesDataGrid.SelectedItem;
-                break;
-            case Key.Tab:
-                
-                break;
-        }
+        _controller = ContextUtils.FromContext<FileBrowserController>(DataContext);
+        FilesDataGrid.SelectedIndex = 0;
+    }
+
+    private void OnGotFocus(object? sender, GotFocusEventArgs e)
+    {
+        _controller?.OnGotFocus();
     }
 }

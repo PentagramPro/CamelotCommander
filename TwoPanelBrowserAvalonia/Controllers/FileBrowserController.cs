@@ -15,16 +15,22 @@ using TwoPanelBrowserAvalonia.Utils;
 
 namespace TwoPanelBrowserAvalonia.Controllers
 {
-    class FileBrowserController
+    public class FileBrowserController
     {
         public ObservableCollection<IFileSystemItem> Files { get; } = new();
         public ICommand EnterItem { get; }
 
-        public string CurrentPath { get; internal set; }
+        public string CurrentPath { get; internal set; } = "";
 
-        public FileBrowserController()
+        private AppController _appController;
+
+        public IFileSystemItem? SelectedItem { get; set; }
+
+        public FileBrowserController(AppController appController, string initialPath)
         {
+            _appController = appController;
             EnterItem = ReactiveCommand.Create((IFileSystemItem selectedItem) => OnEnterItem(selectedItem));
+            LoadFiles(initialPath);
         }
 
         private void OnEnterItem(IFileSystemItem selectedItem)
@@ -36,6 +42,10 @@ namespace TwoPanelBrowserAvalonia.Controllers
             
         }
 
+        public void OnGotFocus()
+        {
+            _appController.SetActiveBrowser(this);
+        }
         public void LoadFiles(string path)
         {
             Files.Clear();
@@ -69,7 +79,11 @@ namespace TwoPanelBrowserAvalonia.Controllers
         }
 
         
+        
+        public void RenameSelectedItem()
+        {
 
+        }
 
        
 

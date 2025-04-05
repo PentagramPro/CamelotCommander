@@ -12,7 +12,7 @@
 		<GridSplitter Grid.Column="1" Background="Gray" ResizeDirection="Columns"/>
 		<cc:FileBrowser Grid.Row="0" Grid.Column="2" Name="PanelRight"/>
 
-		<cc:FunctionalToolbar Grid.Row="1" Grid.ColumnSpan="3" />
+		<cc:FunctionalToolbar Grid.Row="1" Grid.ColumnSpan="3" Name="FunctionalToolbar"/>
 					
 	</Grid>
 </Window>

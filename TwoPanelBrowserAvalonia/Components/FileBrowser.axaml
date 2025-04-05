@@ -8,7 +8,7 @@
 			 x:DataType="local:FileBrowserController">
 
 	
-	<DataGrid Name="FilesDataGrid" ItemsSource="{Binding Files}" AutoGenerateColumns="False" IsReadOnly="True">
+	<DataGrid Name="FilesDataGrid" ItemsSource="{Binding Files}" AutoGenerateColumns="False" IsReadOnly="True" GotFocus="OnGotFocus">
 		<DataGrid.KeyBindings>
 			<KeyBinding Command="{Binding EnterItem}"  CommandParameter="{Binding SelectedItem, ElementName=FilesDataGrid}" Gesture="Enter" />
 		</DataGrid.KeyBindings>

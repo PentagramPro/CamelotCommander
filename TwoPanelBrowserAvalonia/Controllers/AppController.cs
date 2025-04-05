@@ -8,9 +8,27 @@ namespace TwoPanelBrowserAvalonia.Controllers
 {
     public class AppController
     {
-        public void DebugPrint()
+        List<FileBrowserController> _fileBrowsers = new();
+        FileBrowserController? _activeFileBrowser;
+        FunctionalToolbarController? _functionalToolbar;
+
+        public FileBrowserController? ActiveFileBrowser => _activeFileBrowser;
+        public void SetActiveBrowser(FileBrowserController fileBrowser)
         {
-            Console.WriteLine("Debug print from AppController");
+            _activeFileBrowser = fileBrowser;
         }
+        public FileBrowserController CreateFileBrowser()
+        {
+            var fileBrowser = new FileBrowserController(this,Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+            _fileBrowsers.Add(fileBrowser);
+            return fileBrowser;
+        }
+        public FunctionalToolbarController CreateFunctionalToolbar()
+        {
+            _functionalToolbar = new FunctionalToolbarController(this);
+            return _functionalToolbar;
+        }
+
+        
     }
 }

@@ -8,14 +8,16 @@ namespace TwoPanelBrowserAvalonia.Controllers
 {
     public class FunctionalToolbarController
     {
+        private AppController _appController;
         public FunctionalToolbarController(AppController appController)
         {
-            // Initialize the controller
+            _appController = appController;
         }
 
-        public void TriggerFuction()
+        public void OnRename()
         {
-
+            _appController?.ActiveFileBrowser?.RenameSelectedItem();
         }
+
     }
 }

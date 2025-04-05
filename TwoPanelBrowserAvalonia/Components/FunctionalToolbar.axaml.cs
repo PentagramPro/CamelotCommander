@@ -11,11 +11,9 @@ namespace TwoPanelBrowserAvalonia.Components;
 
 public partial class FunctionalToolbar : UserControl
 {
-    FunctionalToolbarController _controller;
-    public FunctionalToolbar(IServiceProvider serviceProvider)
+    public FunctionalToolbar()
     {
         InitializeComponent();
-        
     }
 
     public void OnRename(object sender, RoutedEventArgs e)
