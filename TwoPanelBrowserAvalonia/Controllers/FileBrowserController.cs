@@ -1,5 +1,6 @@
 ﻿using Avalonia.Media.Imaging;
 using Avalonia.Platform;
+using Avalonia.Threading;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace TwoPanelBrowserAvalonia.Controllers
         private AppController _appController;
 
         public IFileSystemItem? SelectedItem { get; set; }
+        FileSystemWatcher? _watcher = null;
 
         public FileBrowserController(AppController appController, string initialPath)
         {
@@ -76,12 +78,31 @@ namespace TwoPanelBrowserAvalonia.Controllers
             {
                 Console.WriteLine($"Error loading files: {ex.Message}");
             }
+            _watcher = CreateWatcher(path);
         }
 
-        
+        private FileSystemWatcher CreateWatcher(string path)
+        {
+            FileSystemWatcher watcher = new FileSystemWatcher(path);
+            watcher.IncludeSubdirectories = false;
+            watcher.NotifyFilter = NotifyFilters.FileName | NotifyFilters.DirectoryName;
+            watcher.Created += OnFolderChanged;
+            watcher.Deleted += OnFolderChanged;
+            watcher.Renamed += OnFolderChanged;
+            watcher.EnableRaisingEvents = true;
+            return watcher;
+        }
+
+        private void OnFolderChanged(object sender, FileSystemEventArgs e)
+        {
+            Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                LoadFiles(CurrentPath);
+            });
+            
+        }
 
 
-       
 
 
     }

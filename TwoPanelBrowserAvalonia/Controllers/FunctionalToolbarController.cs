@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TwoPanelBrowserAvalonia.FileSystem;
 
 namespace TwoPanelBrowserAvalonia.Controllers
 {
@@ -24,6 +25,7 @@ namespace TwoPanelBrowserAvalonia.Controllers
                 return;
 
             var dialog = new RenameWindow();
+            dialog.DataContext = new RenameWindowController(browser.SelectedItem);
             dialog.ShowDialog(_mainWindow);
         }
 

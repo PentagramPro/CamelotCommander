@@ -17,6 +17,9 @@ namespace TwoPanelBrowserAvalonia.FileSystem
         public string FullPath => _directoryInfo.FullName;
         public EFileType FileType => EFileType.Directory;
         public Bitmap? Icon { get; internal set; }
+
+        public FileSystemInfo FileSystemInfo => _directoryInfo;
+
         private DirectoryInfo _directoryInfo;
         public FileSystemItem_Directory(DirectoryInfo directoryInfo, Bitmap icon)
         {
