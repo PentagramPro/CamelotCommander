@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:local="clr-namespace:TwoPanelBrowserAvalonia.Controllers"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="TwoPanelBrowserAvalonia.Components.FileBrowser"
+			 x:DataType="local:FileBrowserController">
+
+	
+	<DataGrid Name="FilesDataGrid" ItemsSource="{Binding Files}" AutoGenerateColumns="False" IsReadOnly="True">
+		<DataGrid.KeyBindings>
+			<KeyBinding Command="{Binding EnterItem}"  CommandParameter="{Binding SelectedItem, ElementName=FilesDataGrid}" Gesture="Enter" />
+		</DataGrid.KeyBindings>
+		<DataGrid.Columns>
+			<DataGridTemplateColumn Header="Icon">
+				<DataGridTemplateColumn.CellTemplate>
+					<DataTemplate>
+						<Image Source="{Binding Icon}" Width="16" Height="16"/>
+					</DataTemplate>
+				</DataGridTemplateColumn.CellTemplate>
+			</DataGridTemplateColumn>
+
+			<!-- Имя файла -->
+			<DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+
+			<!-- Дата изменения -->
+			<DataGridTextColumn Header="Modified" Binding="{Binding Modified}" Width="150"/>
+
+			<!-- Права доступа -->
+			<DataGridTextColumn Header="Permissions" Binding="{Binding Permissions}" Width="100"/>
+		</DataGrid.Columns>
+	</DataGrid>
+</UserControl>
