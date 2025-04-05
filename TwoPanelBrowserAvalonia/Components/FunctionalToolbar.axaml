@@ -7,6 +7,7 @@
              x:Class="TwoPanelBrowserAvalonia.Components.FunctionalToolbar"
 			  x:DataType="local:FunctionalToolbarController">
 	<StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+		
 		<Button Content="F2 - Rename" Width="100" Click="OnRename"/>
 		<Button Content="F3 - View" Width="100" Click="OnView"/>
 		<Button Content="F4 - Edit" Width="100" Click="OnEdit"/>

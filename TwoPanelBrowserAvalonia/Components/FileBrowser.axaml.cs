@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
@@ -26,6 +27,12 @@ public partial class FileBrowser : UserControl
         GotFocus += OnGotFocus;
         DataContextChanged += OnDataContextChanged;
         FilesDataGrid.SelectionChanged += OnSelectionChanged;
+        Loaded += OnLoaded;
+    }
+
+    private void OnLoaded(object? sender, RoutedEventArgs e)
+    {
+        FilesDataGrid.SelectedIndex = 0;
     }
 
     private void OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
