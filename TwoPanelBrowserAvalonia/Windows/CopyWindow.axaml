@@ -1,0 +1,51 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="TwoPanelBrowserAvalonia.CopyWindow"
+        Title="Копирование" Width="600" Height="400"
+		 xmlns:vm="using:TwoPanelBrowserAvalonia.Controllers"
+		x:DataType="vm:CopyWindowController">
+
+	<Design.DataContext>
+		<vm:CopyWindowController/>
+	</Design.DataContext>
+
+	<Grid RowDefinitions="Auto,*,Auto" Margin="10">
+		<!-- Заголовок и пути -->
+		<StackPanel Grid.Row="0" Margin="0,0,0,10">
+			<TextBlock Text="Copy from:" FontWeight="Bold" FontSize="16"/>
+			<TextBlock Text="{Binding SourcePath}" FontSize="14" Margin="0,2"/>
+			<TextBlock Text="Copy to:" HorizontalAlignment="Center" Margin="0,2"/>
+			<TextBlock Text="{Binding TargetPath}" FontSize="14" Margin="0,2"/>
+		</StackPanel>
+
+		<!-- Панель ДО начала копирования -->
+		<StackPanel x:Name="BeforeCopyPanel" Grid.Row="1">
+			<TextBlock Text="Conflicts:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+			<ItemsControl ItemsSource="{Binding ConflictItems}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="• " Foreground="Red"/>
+							<TextBlock Text="{Binding}" />
+						</StackPanel>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</StackPanel>
+
+		<!-- Панель ВО ВРЕМЯ копирования -->
+		<StackPanel x:Name="DuringCopyPanel" Grid.Row="1" IsVisible="False">
+			<TextBlock Text="Copying..." FontWeight="SemiBold" Margin="0,0,0,10"/>
+			<ProgressBar x:Name="ProgressBar" Height="20" Minimum="0" Maximum="1"/>
+			<TextBlock x:Name="CurrentFileText" FontStyle="Italic" Margin="0,5"/>
+		</StackPanel>
+
+		<!-- Кнопки -->
+		<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+			<Button x:Name="SkipButton" Content="Skip" Click="OnSkipIfExists"/>
+			<Button x:Name="OverwriteButton" Content="Overwrite" Click="OnOverwriteIfExists"/>
+
+			<Button x:Name="CancelCopyButton"  Content="Cancel" Click="OnCancel"/>
+		</StackPanel>
+	</Grid>
+</Window>

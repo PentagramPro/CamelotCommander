@@ -14,13 +14,16 @@ namespace TwoPanelBrowserAvalonia.Controllers
         FunctionalToolbarController? _functionalToolbar;
 
         public FileBrowserController? ActiveFileBrowser => _activeFileBrowser;
+        public FileBrowserController? OtherFileBrowser => _fileBrowsers.FirstOrDefault(x => x != _activeFileBrowser);
+
         public void SetActiveBrowser(FileBrowserController fileBrowser)
         {
             _activeFileBrowser = fileBrowser;
         }
         public FileBrowserController CreateFileBrowser()
         {
-            var fileBrowser = new FileBrowserController(this,Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+            var path = "C:\\home\\dev\\playground";//Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            var fileBrowser = new FileBrowserController(this,path);
             _fileBrowsers.Add(fileBrowser);
             return fileBrowser;
         }

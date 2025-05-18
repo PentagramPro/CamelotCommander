@@ -18,14 +18,36 @@ namespace TwoPanelBrowserAvalonia.Controllers
             _mainWindow = mainWindow;
         }
 
-        public void OnRename()
+        private IFileSystemItem? GetSelectedItem()
         {
             var browser = _appController?.ActiveFileBrowser;
             if (browser == null || browser.SelectedItem == null)
+                return null;
+            return browser.SelectedItem;
+        }
+        public void OnRename()
+        {
+            var selectedItem = GetSelectedItem();
+            if(selectedItem == null)
                 return;
 
             var dialog = new RenameWindow();
-            dialog.DataContext = new RenameWindowController(browser.SelectedItem);
+            dialog.DataContext = new RenameWindowController(selectedItem);
+            dialog.ShowDialog(_mainWindow);
+        }
+
+        public void OnCopy()
+        {
+            var selectedItem = GetSelectedItem();
+            if(selectedItem == null)
+                return;
+
+            var otherBrowser = _appController?.OtherFileBrowser;
+            if(otherBrowser == null)
+                return;
+
+            
+            var dialog = new CopyWindow(selectedItem, otherBrowser.CurrentPath);
             dialog.ShowDialog(_mainWindow);
         }
 

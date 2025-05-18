@@ -39,6 +39,9 @@ public partial class FunctionalToolbar : UserControl
             case Key.F2:
                 _controller?.OnRename();
                 break;
+            case Key.F5:
+                _controller?.OnCopy();
+                break;
         }
         
         
@@ -61,7 +64,7 @@ public partial class FunctionalToolbar : UserControl
 
     public void OnCopy(object sender, RoutedEventArgs e)
     {
-        // Method implementation here
+        _controller?.OnCopy();
     }
 
     public void OnMove(object sender, RoutedEventArgs e)
